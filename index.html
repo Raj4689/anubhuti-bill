@@ -3,99 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Anubhuti Ksus - Invoice</title>
+<title>ANUBHUTI KSUS - Billing</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:Arial;background:#f0f4f8;padding:20px}
-  .bill-box{max-width:800px;margin:auto;background:white;padding:25px;border-radius:10px;box-shadow:0 0 15px rgba(0,0,0,0.1)}
-  .header{display:flex;justify-content:space-between;border-bottom:3px solid #1a73e8;padding-bottom:15px;align-items:center}
-  .header h1{color:#1a73e8;font-size:32px;letter-spacing:1px}
-  .cust-details{margin-top:20px;display:flex;gap:20px}
-  .cust-details div{flex:1}
-  .cust-details label{font-weight:bold;font-size:13px;color:#333}
-  .cust-details input{width:100%;padding:8px;margin-top:5px;border:1px solid #ccc;border-radius:5px}
-  table{width:100%;margin-top:20px;border-collapse:collapse}
-  table th{background:#1a73e8;color:white;padding:10px;text-align:left;font-size:14px}
-  table td{padding:8px;border-bottom:1px solid #ddd}
-  table input{width:100%;padding:6px;border:1px solid #ccc;border-radius:4px}
-  .total-box{text-align:right;margin-top:20px;font-size:18px}
-  .total-box span{font-weight:bold;color:#1a73e8;font-size:26px}
-  .btns{margin-top:25px;display:flex;gap:10px;justify-content:center}
-  .btns button{padding:12px 20px;border:none;border-radius:6px;cursor:pointer;font-weight:bold;color:white}
-  .print{background:#1a73e8} .add{background:#34a853} .wa{background:#25D366}
-  @media print{.btns{display:none}}
+body{font-family:Arial,sans-serif;background:#f0f2f5;padding:10px}
+.bill-box{max-width:800px;margin:auto;background:white;padding:20px;border-radius:10px;box-shadow:0 0 10px #ccc}
+.header{display:flex;justify-content:space-between;border-bottom:2px solid #1a237e;padding-bottom:10px}
+.header h1{color:#1a237e;margin:0;font-size:24px}
+.top-inputs{display:flex;gap:10px;margin-top:15px}
+.top-inputs input{width:100%;padding:8px;border:1px solid #ccc;border-radius:5px}
+.table-head{display:flex;background:#304ffe;color:white;padding:8px;border-radius:5px;margin-top:15px}
+.table-head div{flex:1;font-weight:bold}
+.item-row{display:flex;gap:5px;margin-top:8px}
+.item-row input{flex:1;padding:8px;border:1px solid #ccc;border-radius:5px}
+.item-row input:focus{outline:none;border-color:#304ffe}
+.total{ text-align:right; margin-top:15px; font-size:18px; }
+button{padding:10px 15px;border:none;border-radius:5px;cursor:pointer;color:white;margin:5px}
 </style>
 </head>
 <body>
 <div class="bill-box">
   <div class="header">
-    <div>
-      <h1>ANUBHUTI KSUS</h1>
-    </div>
-    <div style="text-align:right">
-      <p><b>Invoice No:</b> <span id="invNo"></span></p>
-      <p><b>Date:</b> <input type="date" id="invDate" style="border:none;text-align:right;font-weight:bold"></p>
+    <h1>ANUBHUTI KSUS</h1>
+    <div style="text-align:right;font-size:13px">
+      <b>Invoice No: AK-<span id="inv">5943</span></b><br>
+      Date: <span id="date"></span>
     </div>
   </div>
 
-  <div class="cust-details">
-    <div><label>Customer Name</label><input type="text" id="custName" placeholder="Customer Name"></div>
-    <div><label>Mobile No</label><input type="text" id="custMobile" placeholder="Mobile Number"></div>
+  <div class="top-inputs">
+    <div style="flex:1">Customer Name<br><input type="text" placeholder="Customer Name" autocomplete="off"></div>
+    <div style="flex:1">Mobile No<br><input type="tel" placeholder="Mobile Number" autocomplete="off"></div>
   </div>
 
-  <table id="itemTable">
-    <tr><th>Item Name</th><th>Qty</th><th>Price</th><th>Total</th></tr>
-    <tr>
-      <td><input type="text" placeholder="Item Name"></td>
-      <td><input type="number" class="qty" value="1" oninput="calc()"></td>
-      <td><input type="number" class="price" value="0" oninput="calc()"></td>
-      <td class="rowTotal">0</td>
-    </tr>
-  </table>
-
-  <div style="text-align:center;margin-top:10px">
-    <button style="padding:8px 15px;background:#34a853;color:white;border:none;border-radius:5px" onclick="addRow()">+ Add Item</button>
+  <div class="table-head">
+    <div style="flex:2">Item Name</div><div>Qty</div><div>Price</div><div>Total</div>
   </div>
 
-  <div class="total-box">
-    Grand Total: ₹ <span id="grandTotal">0</span>
+  <div id="items">
+    <div class="item-row">
+      <input type="text" style="flex:2" placeholder="Item Name" autocomplete="off" spellcheck="false">
+      <input type="number" placeholder="Qty" value="1" oninput="calc()" autocomplete="off">
+      <input type="number" placeholder="Price" oninput="calc()" autocomplete="off">
+      <input type="text" placeholder="Total" readonly>
+    </div>
   </div>
 
-  <div class="btns">
-    <button class="print" onclick="window.print()">PRINT BILL</button>
-    <button class="wa" onclick="shareWA()">WhatsApp Share</button>
-  </div>
+  <center><button style="background:#2e7d32" onclick="addItem()">+ Add Item</button></center>
+  <div class="total">Grand Total: ₹ <b id="grand">0</b></div>
+  <center>
+    <button style="background:#1565c0" onclick="window.print()">PRINT BILL</button>
+    <button style="background:#25D366" onclick="shareWA()">WhatsApp Share</button>
+  </center>
 </div>
 
 <script>
-  document.getElementById('invNo').innerText = 'AK-' + Math.floor(Math.random()*9000+1000);
-  document.getElementById('invDate').valueAsDate = new Date();
-  function calc(){
-    let grand=0;
-    document.querySelectorAll('#itemTable tr').forEach((row,i)=>{
-      if(i==0) return;
-      let q=row.querySelector('.qty').value||0;
-      let p=row.querySelector('.price').value||0;
-      let t=q*p;
-      row.querySelector('.rowTotal').innerText=t;
-      grand+=t;
-    });
-    document.getElementById('grandTotal').innerText=grand;
-  }
-  function addRow(){
-    let table=document.getElementById('itemTable');
-    let newRow=table.rows[1].cloneNode(true);
-    newRow.querySelectorAll('input').forEach(inp=>{ if(inp.placeholder=='Item Name') inp.value=''; else inp.value=inp.classList.contains('qty')?1:0; });
-    table.appendChild(newRow);
-    calc();
-  }
-  function shareWA(){
-    let name=document.getElementById('custName').value||'Customer';
-    let total=document.getElementById('grandTotal').innerText;
-    let msg=`*ANUBHUTI KSUS - INVOICE*%0AName: ${name}%0ATotal: Rs ${total}%0A%0AThank you!`;
-    window.open(`https://wa.me/?text=${msg}`,'_blank');
-  }
-  calc();
+document.getElementById('date').innerText = new Date().toLocaleDateString();
+function calc(){
+  let grand=0;
+  document.querySelectorAll('#items .item-row').forEach(row=>{
+    let q=row.children[1].value||0;
+    let p=row.children[2].value||0;
+    let t=q*p;
+    row.children[3].value=t;
+    grand+=t;
+  });
+  document.getElementById('grand').innerText=grand;
+}
+function addItem(){
+  let div=document.createElement('div');
+  div.className='item-row';
+  div.innerHTML='<input type="text" style="flex:2" placeholder="Item Name" autocomplete="off" spellcheck="false"><input type="number" placeholder="Qty" value="1" oninput="calc()" autocomplete="off"><input type="number" placeholder="Price" oninput="calc()" autocomplete="off"><input type="text" placeholder="Total" readonly>';
+  document.getElementById('items').appendChild(div);
+}
+function shareWA(){
+  let total=document.getElementById('grand').innerText;
+  let msg=`*ANUBHUTI KSUS*%0ABill Total: Rs ${total}%0AThank you for shopping!`;
+  window.open(`https://wa.me/?text=${msg}`,'_blank');
+}
+calc();
 </script>
 </body>
 </html>
