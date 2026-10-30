@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ANUBHUTI KSUS - FINAL PROFESSIONAL</title>
+
+  <!-- ===== CSS - FRONT DESIGN ===== -->
+  <style>
+    /* Reset */
+    * { margin:0; padding:0; box-sizing:border-box }
+    body { font-family:Arial; font-size:11px; background:#eef2f7; padding:10px }
+
+    /* Main Layout - Left / Right */
+    .top-grid { display:grid; grid-template-columns:400px 1fr; gap:12px; max-width:1400px; margin:0 auto 12px auto }
+    .left-panel, .right-panel { background:#fff; padding:14px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,.1) }
+    .left-panel { max-height:90vh; overflow-y:auto; position:sticky; top:10px }
+    .right-panel { max-height:90vh; overflow-y:auto; position:sticky; top:10px }
+
+    /* Paper Preview Area */
+    .paper-wrap { max-width:1400px; margin:auto; background:#fff; border-radius:10px; padding:12px; box-shadow:0 2px 10px rgba(0,0,0,.1) }
+
+    /* Buttons */
+    .btn { padding:10px 14px; border:none; border-radius:6px; font-weight:800; cursor:pointer; width:100%; margin-top:8px }
+    .btn-blue { background:#0a2a5a; color:#fff }
+    .btn-green { background:#0ab86a; color:#fff }
+    .btn-red { background:#ff3b3b; color:#fff }
+
+    /* Inputs */
+    input, textarea, select { width:100%; padding:10px; border:2px solid #999; border-radius:6px; font-size:13px; margin-top:4px }
+    label { font-size:10px; font-weight:800; display:block; margin-top:12px; color:#0a2a5a; text-transform:uppercase }
+
+    /* Badges & Product Row */
+    .badge { padding:6px 12px; border-radius:20px; font-weight:800; display:inline-block }
+    .row { display:grid; grid-template-columns:1fr 1fr 70px 70px 35px; gap:6px; background:#f5f7fa; padding:8px; border-radius:6px; margin-top:6px }
+
+    /* Paper Document */
+    .paper { border:2px solid #000; background:#fff }
+    .paper table { width:100%; border-collapse:collapse }
+    .paper td, .paper th { border:1px solid #000; padding:6px; vertical-align:top }
+    .company-title { text-align:center; font-weight:800; font-size:22px; padding:14px 10px 6px 10px; background:#0a2a5a; color:#fff }
+    .doc-title-line { text-align:center; font-weight:800; font-size:16px; padding:8px; background:#fff; color:#000; border-bottom:2px solid #000; border-left:2px solid #000; border-right:2px solid #000; letter-spacing:2px }
+
+    /* Print - Sirf Paper Print Hoga */
+    @media print {
+      .no-print { display:none!important }
+      .top-grid { display:none!important }
+      body { background:#fff; padding:0 }
+      .paper-wrap { box-shadow:none; padding:0; border:none }
+      .company-title { background:#fff!important; color:#000!important; border:2px solid #000; border-bottom:none }
+      .doc-title-line { border:2px solid #000; border-top:none }
+    }
+
+    /* Mobile */
+    @media(max-width:900px){
+      .top-grid { grid-template-columns:1fr }
+      .left-panel, .right-panel { position:static; max-height:none }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== FRONT END - NO PRINT ===== -->
+  <div class="top-grid no-print">
+
+    <!-- LEFT SIDE INPUTS -->
+    <div class="left-panel">
+      
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+        <span class="badge" id="badge" style="background:#ffc107">USD - $</span>
+        <span class="badge" id="docBadge" style="background:#0ab86a; color:#fff">INVOICE</span>
+      </div>
+
+      <label>DOC TYPE</label>
+      <select id="docType" onchange="chgDoc()">
+        <option value="INVOICE">INVOICE</option>
+        <option value="QUOTATION">QUOTATION</option>
+        <option value="PACKING LIST">PACKING LIST</option>
+        <option value="PROFORMA INVOICE">PROFORMA INVOICE</option>
+      </select>
+
+      <label>CURRENCY</label>
+      <select id="cur" onchange="chgCur()">
+        <option value="USD">USD - $</option>
+        <option value="INR">INR - ₹</option>
+        <option value="AED">AED</option>
+        <option value="EUR">EUR - €</option>
+        <option value="GBP">GBP - £</option>
+        <option value="SAR">SAR</option>
+        <option value="QAR">QAR</option>
+        <option value="OMR">OMR</option>
+      </select>
+
+      <label>EXPORTER</label>
+      <textarea id="exp" rows="4">ANUBHUTI KSUS EXIMPRENEUR
+YAVATMAL, MAHARASHTRA, INDIA
+GSTIN: 27ABCDE1234F1Z5</textarea>
+
+      <label>BUYER</label>
+      <textarea id="buyer" rows="5" style="min-height:120px; background:#fff9c4; border:2px solid #ff9800">AL RAHMANI TRADING LLC, DUBAI, UAE</textarea>
+
+      <label>CONSIGNEE</label>
+      <textarea id="consignee" rows="5" style="min-height:120px; background:#e3f2fd; border:2px solid #0a2a5a">ARAB EMIRATES FRESH IMPORTS, JEBEL ALI, DUBAI</textarea>
+
+      <label>DOC NO</label>
+      <input id="invNo" value="AKS-4524-25">
+
+      <label>DATE</label>
+      <input id="invDate" value="05 Dec, 2024">
+
+      <label>POL</label>
+      <input id="pol" value="NHAVA SHEVA, INDIA">
+
+      <label>POD</label>
+      <input id="pod" value="JEBEL ALI, DUBAI">
+
+      <label>ORIGIN</label>
+      <input id="origin" value="INDIA">
+
+      <label>DEST</label>
+      <input id="dest" value="UAE">
+
+      <label>PAYMENT</label>
+      <input id="pay" value="30% Advance, 70% D.A">
+
+      <label>INCOTERMS</label>
+      <input id="inco" value="CIF JEBEL ALI">
+
+      <div style="background:#0a2a5a; color:#fff; padding:10px; border-radius:6px; display:flex; justify-content:space-between; font-weight:800; margin-top:12px">
+        <span id="totLabel">TOTAL USD</span>
+        <span id="totAmt">$ 0.00</span>
+      </div>
+
+      <button class="btn btn-blue" onclick="window.print()">PRINT</button>
+
+    </div>
+
+    <!-- RIGHT SIDE PRODUCTS -->
+    <div class="right-panel">
+      <div id="editList"></div>
+      <button class="btn btn-green" onclick="addP()">+ ADD PRODUCT</button>
+    </div>
+
+  </div>
+
+  <!-- ===== BACKGROUND PAPER - PRINT HOGA ===== -->
+  <div class="paper-wrap">
+    <div class="paper" id="paper"></div>
+  </div>
+
+  <!-- ===== JAVASCRIPT - LOGIC ===== -->
+  <script>
+    // Currency Data
+    var curs = {
+      USD:{s:'$'},
+      INR:{s:'₹'},
+      AED:{s:'AED'},
+      EUR:{s:'€'},
+      GBP:{s:'£'},
+      SAR:{s:'SAR'},
+      QAR:{s:'QAR'},
+      OMR:{s:'OMR'}
+    };
+
+    var cur = 'USD';
+    var docType = 'INVOICE';
+
+    // Default Products
+    var prods = [
+      { hs:'07096010', goods:'INDIAN FRESH GREEN CHILLIES - GRADE A - 4KG BOX', qty:3600, price:4.205 },
+      { hs:'07096010', goods:'INDIAN FRESH RED CHILLIES', qty:2000, price:3.5 }
+    ];
+
+    // Safe Text
+    function esc(t){
+      if(!t) return '';
+      return t.toString().replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    // Change Currency
+    function chgCur(){
+      cur = document.getElementById('cur').value;
+      document.getElementById('badge').innerText = cur + ' - ' + curs[cur].s;
+      document.getElementById('totLabel').innerText = 'TOTAL ' + cur;
+      renderAll();
+    }
+
+    // Change Doc Type
+    function chgDoc(){
+      docType = document.getElementById('docType').value;
+      document.getElementById('docBadge').innerText = docType;
+      renderAll();
+    }
+
+    // Add Product
+    function addP(){
+      prods.push({hs:'07096010', goods:'NEW PRODUCT', qty:1000, price:1});
+      renderAll();
+    }
+
+    // Remove Product
+    function remP(i){
+      if(prods.length==1){ alert('Need 1'); return; }
+      prods.splice(i,1);
+      renderAll();
+    }
+
+    // Update Product
+    function updP(i,f,v){
+      if(f==='qty' || f==='price'){ prods[i][f] = parseFloat(v) || 0; }
+      else{ prods[i][f] = v; }
+      renderPaper();
+      updTot();
+    }
+
+    // Update Total
+    function updTot(){
+      var t=0;
+      for(var i=0;i<prods.length;i++){ t += prods[i].qty * prods[i].price; }
+      document.getElementById('totAmt').innerText = curs[cur].s + ' ' + t.toFixed(2);
+    }
+
+    // Render Right Side Edit List
+    function renderEdit(){
+      var h='';
+      for(var i=0;i<prods.length;i++){
+        var p=prods[i];
+        h += '<div class="row">';
+        h += '<input value="'+esc(p.hs)+'" oninput="updP('+i+',\'hs\',this.value)">';
+        h += '<input value="'+esc(p.goods)+'" oninput="updP('+i+',\'goods\',this.value)">';
+        h += '<input type="number" value="'+p.qty+'" oninput="updP('+i+',\'qty\',this.value)">';
+        h += '<input type="number" step="0.001" value="'+p.price+'" oninput="updP('+i+',\'price\',this.value)">';
+        h += '<button class="btn btn-red" onclick="remP('+i+')">X</button>';
+        h += '</div>';
+      }
+      document.getElementById('editList').innerHTML = h;
+      updTot();
+    }
+
+    // Render Background Paper
+    function renderPaper(){
+      var exp = document.getElementById('exp').value;
+      var buyer = document.getElementById('buyer').value;
+      var consignee = document.getElementById('consignee').value;
+      var invNo = document.getElementById('invNo').value;
+      var invDate = document.getElementById('invDate').value;
+      var pol = document.getElementById('pol').value;
+      var pod = document.getElementById('pod').value;
+      var origin = document.getElementById('origin').value;
+      var dest = document.getElementById('dest').value;
+      var pay = document.getElementById('pay').value;
+      var inco = document.getElementById('inco').value;
+      var c = curs[cur];
+      var total=0;
+      var rows='';
+
+      for(var i=0;i<prods.length;i++){
+        var p=prods[i];
+        var amt = p.qty * p.price;
+        total += amt;
+        if(docType==='PACKING LIST'){
+          rows += '<tr><td>'+esc(p.hs)+'</td><td>'+esc(p.goods)+'</td><td style="text-align:center">'+p.qty+'</td><td style="text-align:center">As per packing</td><td style="text-align:center">As per packing</td></tr>';
+        } else {
+          rows += '<tr><td>'+esc(p.hs)+'</td><td>'+esc(p.goods)+'</td><td style="text-align:center">'+p.qty+'</td><td style="text-align:right">'+c.s+' '+p.price.toFixed(3)+'</td><td style="text-align:right"><b>'+c.s+' '+amt.toFixed(2)+'</b></td></tr>';
+        }
+      }
+
+      var html = '<div class="company-title">ANUBHUTI KSUS EXIMPRENEUR</div>';
+      html += '<div class="doc-title-line">'+docType+'</div>';
+      html += '<table><tr><td style="width:50%"><b>EXPORTER:</b><br>'+esc(exp).replace(/\n/g,'<br>')+'</td><td><b>Doc No:</b> '+esc(invNo)+'<br><b>Date:</b> '+esc(invDate)+'</td><td><b>Currency:</b> '+cur+' '+c.s+'</td></tr></table>';
+      html += '<table><tr><td style="width:50%;background:#fff9c4"><b>BUYER:</b><br>'+esc(buyer).replace(/\n/g,'<br>')+'</td><td style="width:50%;background:#e3f2fd"><b>CONSIGNEE:</b><br>'+esc(consignee).replace(/\n/g,'<br>')+'</td></tr></table>';
+      html += '<table><tr><td><b>POL:</b> '+esc(pol)+'</td><td><b>POD:</b> '+esc(pod)+'</td><td><b>Origin:</b> '+esc(origin)+'</td><td><b>Dest:</b> '+esc(dest)+'</td></tr><tr><td colspan="2"><b>Payment:</b> '+esc(pay)+'</td><td colspan="2"><b>Incoterms:</b> '+esc(inco)+'</td></tr></table>';
+
+      if(docType==='PACKING LIST'){
+        html += '<table><tr style="background:#0a2a5a;color:#fff"><th>HS</th><th>Description</th><th>Qty</th><th>Net Wt</th><th>Gross Wt</th></tr>'+rows+'</table>';
+      } else {
+        html += '<table><tr style="background:#0a2a5a;color:#fff"><th>HS</th><th>Description</th><th>Qty</th><th>Price ('+c.s+')</th><th>Amount ('+c.s+')</th></tr>'+rows+'<tr style="background:#fff3cd"><td colspan="4" style="text-align:right"><b>TOTAL '+cur+'</b></td><td style="text-align:right"><b>'+c.s+' '+total.toFixed(2)+'</b></td></tr></table>';
+        html += '<div style="padding:6px;border:1px solid #000;border-top:none"><b>Amount:</b> '+cur+' '+c.s+' '+total.toFixed(2)+' Only</div>';
+      }
+
+      html += '<table><tr><td style="width:60%;font-size:9px"><b>Bank:</b> HDFC BANK LTD - ACC: 50200059693080 - IFSC: HDFC0000276<br>For ANUBHUTI KSUS EXIMPRENEUR - '+docType+'</td><td style="width:40%;text-align:center;vertical-align:bottom;padding:6px"><div style="border:1px solid #000;width:135px;min-height:65px;margin-left:auto;padding:3px"><div style="height:35px"></div><div style="border-top:1px solid #000;padding-top:3px;font-size:8px"><b>Authorized Signatory</b></div></div></td></tr></table>';
+
+      document.getElementById('paper').innerHTML = html;
+    }
+
+    function renderAll(){ renderEdit(); renderPaper(); }
+    renderAll();
+
+    // Auto Live Update
+    var ids=['exp','buyer','consignee','invNo','invDate','pol','pod','origin','dest','pay','inco'];
+    for(var i=0;i<ids.length;i++){
+      var el=document.getElementById(ids[i]);
+      if(el) el.addEventListener('input',renderPaper);
+    }
+  </script>
+
+</body>
+</html>
