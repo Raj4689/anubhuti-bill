@@ -7,14 +7,12 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Inter, Segoe UI, sans-serif; }
         body { background: #eef2f7; padding: 16px; font-size: 11.5px; }
-        /* --- NAYA NAVBAR --- */
         .top-nav{max-width:1100px;margin:0 auto 14px auto;background:#fff;padding:10px 14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
         .nav-left{font-weight:900;color:#1e3a5f;font-size:14px}
         .nav-right{display:flex;gap:8px}
         .nav-btn{padding:8px 16px;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:11px;text-decoration:none;display:inline-block}
         .nav-home{background:#1e3a5f;color:#fff}
         .nav-dash{background:#f9c00f;color:#000}
-        /* --- TERI PURANI CSS --- */
         .edit-panel { max-width: 1100px; margin: 0 auto 14px auto; background: #0a1931; padding: 18px; border-radius: 14px; color: #fff; }
         .edit-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
         .edit-panel label { font-size: 9px; color: #7dd3ff; font-weight: 800; display: block; margin-bottom: 4px; text-transform: uppercase; }
@@ -56,12 +54,11 @@
     </style>
 </head>
 <body>
-    <!-- NAYA NAVBAR -->
     <div class="top-nav no-print">
         <div class="nav-left">ANUBHUTI KSUS EXIMPRENEUR</div>
         <div class="nav-right">
             <a class="nav-btn nav-home" href="/">🏠 HOME</a>
-            <button class="nav-btn nav-dash" onclick="document.getElementById('dashboardAnchor').scrollIntoView({behavior:'smooth'})">📊 DASHBOARD</button>
+            <a class="nav-btn nav-dash" href="/dashboard.html">📊 DASHBOARD</a>
         </div>
     </div>
 
