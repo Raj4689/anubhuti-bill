@@ -3,7 +3,9 @@
 <div class="top-nav"><b>📊 CLIENT DASHBOARD</b><div><a class="nav-btn nav-home" href="/">🏠 HOME</a></div></div>
 <div class="sheet"><h3>Saved Clients - <span id="c">0</span></h3><div id="list"></div></div>
 <script>
-function getC(){return JSON.parse(localStorage.getItem('aks_clients')||'[]')}
+function getC(){return JSON.parse(localStorage.getItem('aks_clients')||'[]')}{
+  "cleanUrls": true
+}
 function render(){let cs=getC();document.getElementById('c').innerText=cs.length;let h='';cs.forEach((c,i)=>{h+=`<div class="card"><div><b>${c.name}</b><br><small>${c.buyer}</small></div><div><button onclick="useC(${i})" style="background:#0ea5e9;color:#fff;border:none;padding:6px 12px;border-radius:6px">USE</button> <button onclick="delC(${i})" style="background:#ef4444;color:#fff;border:none;padding:6px 12px;border-radius:6px">DEL</button></div></div>`});document.getElementById('list').innerHTML=h||'No clients';}
 function delC(i){let cs=getC();cs.splice(i,1);localStorage.setItem('aks_clients',JSON.stringify(cs));render();}
 function useC(i){localStorage.setItem('aks_selected_client',i);location.href='/';}
