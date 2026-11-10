@@ -1,4 +1,4 @@
-{
+
   {
   "buildCommand": "",
   "outputDirectory": "public"
@@ -11,6 +11,5 @@
       { "key": "Referrer-Policy", "value": "same-origin" },
       { "key": "X-Frame-Options", "value": "DENY" }
     ] }
-   ]
-  }
+  ]
 }
