@@ -1,5 +1,5 @@
 
   {
-  "buildCommand": "npm",
+  "buildCommand": "",
   "outputDirectory": "public"
 }
