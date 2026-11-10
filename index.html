@@ -1,166 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANUBHUTI KSUS - FINAL 12 LPA - V2+V3+STOCK+CONTAINER</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Inter, Segoe UI, sans-serif; }
-        body { background: #eef2f7; padding: 16px; font-size: 11.5px; }
-        .top-nav{max-width:1100px;margin:0 auto 14px auto;background:#fff;padding:10px 14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
-        .nav-left{font-weight:900;color:#1e3a5f;font-size:14px}
-        .nav-right{display:flex;gap:8px}
-        .nav-btn{padding:8px 16px;border:none;border-radius:8px;font-weight:800;cursor:pointer;font-size:11px;text-decoration:none;display:inline-block}
-        .nav-home{background:#1e3a5f;color:#fff}
-        .nav-dash{background:#f9c00f;color:#000}
-        .edit-panel { max-width: 1100px; margin: 0 auto 14px auto; background: #0a1931; padding: 18px; border-radius: 14px; color: #fff; }
-        .edit-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
-        .edit-panel label { font-size: 9px; color: #7dd3ff; font-weight: 800; display: block; margin-bottom: 4px; text-transform: uppercase; }
-        .edit-panel input, .edit-panel textarea, .edit-panel select { width: 100%; padding: 9px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.08); color: #fff; font-size: 11.5px; }
-        .edit-panel input::placeholder { color: rgba(255,255,255,0.4); }
-        .edit-panel option { background: #0a1931; }
-        .edit-panel textarea { resize: none; height: 68px; }
-        .prod-edit { grid-column: span 3; margin-top: 14px; border-top: 1px solid rgba(255,255,255,0.15); padding-top: 14px; }
-        .prod-head { display: grid; grid-template-columns: 90px 1fr 70px 70px 70px 80px 50px; gap: 6px; font-size: 8px; color: #7dd3ff; font-weight: 800; padding: 6px 0; }
-        .prod-row { display: grid; grid-template-columns: 90px 1fr 70px 70px 70px 80px 50px; gap: 6px; margin-top: 8px; align-items: center; }
-        .prod-row input { background: rgba(255,255,255,0.12) !important; border: 1px solid rgba(255,255,255,0.2) !important; font-size: 10px; }
-        .sheet { max-width: 1100px; margin: auto; background: #fff; box-shadow: 0 20px 60px rgba(0,0,0,0.18); border-radius: 4px; overflow: hidden; }
-        .head { background: #1e3a5f; color: #fff; display: flex; justify-content: space-between; padding: 18px 24px; }
-        .head h1 { color: #f9c00f; font-size: 32px; font-weight: 900; }
-        .yellow { background: #f9c00f; color: #000; font-weight: 900; padding: 6px 24px; font-size: 12px; }
-        table { width: 100%; border-collapse: collapse; font-size: 11.5px; }
-        th { background: #1e3a5f; color: #fff; padding: 8px 6px; text-align: left; border: 1px solid #1e3a5f; font-size: 10px; }
-        td { padding: 8px 6px; border: 1px solid #cbd5e1; }
-        .total-wrap { display: flex; justify-content: flex-end; padding: 10px 24px; }
-        .total-box { width: 340px; font-size: 11.5px; }
-        .total-box .r { display: flex; justify-content: space-between; padding: 4px 0; }
-        .total-box .line { border-top: 1.5px solid #000; margin: 6px 0; }
-        .footer { height: 8px; background: #1e3a5f; }
-        .btn { padding: 9px 16px; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; font-size: 11px; }
-        .btn-add { background: linear-gradient(135deg, #10b981, #34d399); color: #fff; }
-        .btn-red { background: #ef4444; color: #fff; }
-        .btn-blue { background: #0ea5e9; color: #fff; }
-        .btn-print { background: #1e3a5f; color: #f9c00f; }
-        .btn-wa { background: #25D366; color: #fff; }
-        .client-box { grid-column: span 3; background: rgba(255,255,255,0.06); padding: 12px; border-radius: 10px; border: 1px dashed rgba(125,211,252,0.4); }
-        .stock-box { grid-column: span 3; background: rgba(16,185,129,0.08); padding: 12px; border-radius: 10px; border: 1px dashed rgba(16,185,129,0.5); }
-        .container-box { grid-column: span 3; background: rgba(249,192,15,0.08); padding: 12px; border-radius: 10px; border: 1px dashed rgba(249,192,15,0.6); }
-        .profit-badge { font-size: 8px; padding: 2px 5px; border-radius: 4px; font-weight: 900; }
-        .profit-green { background: #10b981; color: #fff; }
-        .profit-red { background: #ef4444; color: #fff; }
-        .total-below { margin-top: 14px; display: flex; justify-content: flex-end; }
-        .total-below-box { background: rgba(255,255,255,0.12); padding: 14px; border-radius: 10px; width: 280px; display: flex; justify-content: space-between; font-weight: 800; border: 1px solid rgba(255,255,255,0.15); }
-        @media print { .edit-panel, .btns, .no-print { display: none !important; } body { background: #fff; padding: 0; } .sheet { box-shadow: none; } }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Anubhuti KSUS Eximpreneur</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F4F6F3;--sf:#fff;--ink:#14282B;--mu:#5B6E6C;--ln:#DCE3DF;--br:#0E4D4A;--on:#fff;--gd:#E7A21B;--ok:#1B7F54;--wn:#B4540A;--bd:#B3261E;--sd:#0B3C3A;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B1617;--sf:#122223;--ink:#E8EFEC;--mu:#93A8A5;--ln:#24393A;--br:#3FB5A8;--on:#06201E;--gd:#F0B33A;--ok:#4CC38A;--wn:#F0944A;--bd:#F27C73;--sd:#081213;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B1617;--sf:#122223;--ink:#E8EFEC;--mu:#93A8A5;--ln:#24393A;--br:#3FB5A8;--on:#06201E;--gd:#F0B33A;--ok:#4CC38A;--wn:#F0944A;--bd:#F27C73;--sd:#081213;color-scheme:dark}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font:400 14.5px/1.5 Figtree,system-ui,sans-serif}
+h1,h2,h3{font-family:'Bricolage Grotesque',Georgia,sans-serif;margin:0;letter-spacing:-.02em}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gd);outline-offset:2px}
+.hd{background:var(--sd);color:#CFE3DF;display:flex;align-items:center;gap:1rem;padding:12px clamp(14px,3vw,36px);position:sticky;top:0;z-index:20;flex-wrap:wrap}
+.logo{font:800 19px 'Bricolage Grotesque',sans-serif;color:#fff;display:flex;gap:.5rem;align-items:center;margin-right:auto}
+.logo i{width:24px;height:24px;border-radius:7px 7px 7px 2px;background:var(--gd)}
+.logo small{display:block;font:500 11px Figtree;color:#9DBDB8;letter-spacing:.02em}
+.tab{background:none;border:0;color:inherit;padding:.5em .9em;border-radius:9px;cursor:pointer;font-weight:500}
+.tab[aria-current=page]{background:#ffffff22;color:#fff;box-shadow:inset 0 -3px 0 var(--gd)}
+.btn{background:var(--br);color:var(--on);border:0;border-radius:10px;padding:.6em 1.1em;font-weight:600;cursor:pointer}
+.btn.gd{background:var(--gd);color:#14282B}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--ln)}
+.btn.sm{padding:.3em .65em;font-size:13px}
+input,select,textarea{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:9px;padding:.55em .7em}
+textarea{resize:vertical;min-height:62px}
+label{display:block;font-size:12.5px;font-weight:600;color:var(--mu);margin:0 0 .25em}
+main{max-width:1240px;margin:0 auto;padding:clamp(14px,3vw,32px)}
+.lay{display:grid;grid-template-columns:1fr 340px;gap:16px;align-items:start}
+.cd{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:18px 20px;margin-bottom:14px}
+.cd h3{font-size:17px;margin-bottom:.9rem}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px 12px}
+.g .w{grid-column:1/-1}
+.sk{position:sticky;top:76px}
+.big{background:var(--br);color:var(--on);border-radius:16px;padding:20px;margin-bottom:14px}
+.big small{opacity:.8}.big b{display:block;font:800 36px/1.1 'Bricolage Grotesque';margin:.1rem 0 .6rem}
+.big div{display:flex;justify-content:space-between;padding:.2rem 0;font-size:13.5px}
+.chip{display:inline-block;padding:.2em .7em;border-radius:99px;font-size:12.5px;font-weight:600;border:1px solid currentColor}
+.ok{color:var(--ok)}.bad{color:var(--bd)}.warn{color:var(--wn)}
+.sk .cd b{font-family:'Bricolage Grotesque'}
+.ln{display:flex;justify-content:space-between;padding:.25rem 0}
+.pr{display:grid;grid-template-columns:110px 1fr 90px 90px 90px 90px 92px 34px;gap:6px;margin-bottom:6px;align-items:center}
+.pr.h{font-size:12px;font-weight:600;color:var(--mu)}
+.pr output{font-size:12.5px;font-weight:600}
+.tw{overflow-x:auto}
+.kp{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.kp>div{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:14px 18px}
+.kp small{color:var(--mu)}.kp b{display:block;font:700 24px 'Bricolage Grotesque'}
+.kp>div:first-child{background:var(--br);color:var(--on)}.kp>div:first-child small{color:inherit;opacity:.8}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{text-align:left;color:var(--mu);font-weight:600;padding:.5rem .5rem;border-bottom:1px solid var(--ln);white-space:nowrap}
+td{padding:.6rem .5rem;border-bottom:1px solid var(--ln)}
+.n{text-align:right}
+.sel{display:flex;gap:8px;align-items:end;flex-wrap:wrap}.sel>*{flex:1;min-width:170px}.sel .btn{flex:none}
+#toast{position:fixed;bottom:calc(18px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.65em 1.2em;border-radius:10px;z-index:60}
+.md{position:fixed;inset:0;background:#0009;display:grid;place-items:center;padding:14px;z-index:50}
+.inv{background:#fff;color:#14282B;border-radius:12px;width:min(780px,100%);max-height:92vh;overflow:auto;padding:30px;font-size:13px}
+.inv *{color:#14282B;border-color:#CFD8D4}
+.inv table th,.inv table td{border:1px solid #CFD8D4;padding:.4rem .5rem}
+.inv .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+.inv pre{font:inherit;white-space:pre-wrap;margin:.2rem 0}
+@media print{.hd,#app,#toast{display:none!important}.md{position:static;display:block;background:none;padding:0}.inv{max-height:none;width:100%;overflow:visible;padding:0}.noprint{display:none!important}}
+@media(max-width:900px){.lay{grid-template-columns:1fr}.sk{position:static}.kp{grid-template-columns:1fr 1fr}
+.pr{grid-template-columns:1fr 1fr;padding:10px;border:1px solid var(--ln);border-radius:10px}.pr.h{display:none}.inv .two{grid-template-columns:1fr}}
+.hd[hidden]{display:none}
+.dbs{font-size:12px;padding:.2em .8em;border-radius:99px;border:1px solid #ffffff44;color:#CFE3DF}
+.lgn{display:grid;grid-template-columns:1.05fr 1fr;min-height:calc(100vh - 90px);border-radius:20px;overflow:hidden;border:1px solid var(--ln)}
+.lgl{background:var(--sd);color:#CFE3DF;padding:clamp(22px,4vw,56px);display:flex;flex-direction:column;justify-content:space-between;gap:2rem}
+.lgl h1{color:#fff;font-size:clamp(28px,4vw,48px);line-height:1.05;max-width:13ch;margin-bottom:1rem}
+.lgl ul{list-style:none;padding:0;margin:0;display:grid;gap:.5rem}
+.lgl li::before{content:"";display:inline-block;width:8px;height:8px;border-radius:2px;background:var(--gd);margin-right:.6rem}
+.lgr{display:grid;place-items:center;padding:24px;background:var(--sf)}
+.lgr form{width:min(360px,100%)}
+.hb{display:grid;grid-template-columns:110px 1fr 90px;gap:8px;align-items:center;margin:.5rem 0;font-size:13px}
+.hb i{display:block;height:10px;border-radius:99px;background:var(--br)}
+.hb b{text-align:right}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--bg);padding:4px;border-radius:12px;margin-bottom:1.3rem}
+.seg button{border:0;background:none;padding:.55em;border-radius:9px;font-weight:600;cursor:pointer;color:var(--mu)}
+.seg button[aria-pressed=true]{background:var(--sf);color:var(--ink);box-shadow:0 1px 3px #0003}
+@media(max-width:900px){.lgn{grid-template-columns:1fr}.lgl{min-height:260px}}
+</style>
 </head>
 <body>
-    <div class="top-nav no-print">
-        <div class="nav-left">ANUBHUTI KSUS EXIMPRENEUR</div>
-        <div class="nav-right">
-            <a class="nav-btn nav-home" href="/">🏠 HOME</a>
-            <a class="nav-btn nav-dash" href="/dashboard.html">📊 DASHBOARD</a>
-        </div>
-    </div>
+<header class="hd" id="hd" hidden><div class="logo"><i></i><span>Anubhuti KSUS Eximpreneur<small>Export documentation, stock and profit</small></span></div>
+<button class="tab" data-v="home">Home</button><button class="tab" data-v="dash">Dashboard</button><button class="tab" data-v="hist">History</button><button class="tab" data-v="ana">Analytics</button><button class="tab" data-v="out">Sign out</button></header>
+<main id="app"></main><div id="toast" hidden></div>
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const SYM={INR:'₹',USD:'$',AED:'AED ',EUR:'€'};
+const day=(o=0)=>{const d=new Date();d.setDate(d.getDate()+o);return d.toISOString().slice(0,10)};
+const load=(k,d)=>{try{return JSON.parse(localStorage.getItem(k)||'null')||d}catch(e){return d}};
+const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){return 0}if(k=='ax_stock')dbSet('settings','stock',v,700);if(k=='ax_brand')dbSet('settings','brand',v,700);return 1};
+let clients=load('ax_cl',[]),invs=load('ax_inv',[]),stock=load('ax_stock',{g:5000,r:3000,o:10000}),brand=load('ax_brand',{logo:'',sig:''}),auth=load('ax_auth',null),users=load('ax_users',[]),mode=null,DB=null,cloud='local',ready=false,ok=false;
+try{ok=sessionStorage.getItem('ax_ok')=='1'}catch(e){}
+const fresh=()=>({type:'INVOICE',cur:'INR',no:'AKS-'+(4524+invs.length)+'-25',exporter:'ANUBHUTI KSUS EXIMPRENEUR\nYAVATMAL, MAHARASHTRA, INDIA',buyer:'AL RAHMANI TRADING LLC, DUBAI, UAE',consignee:'ARAB EMIRATES FRESH IMPORTS, JEBEL ALI, DUBAI',status:'Unpaid',pol:'NHAVA SHEVA, INDIA',origin:'INDIA',pay:'30% Advance, 70% D.A',pod:'JEBEL ALI, DUBAI',dest:'UAE',inc:'CIF JEBEL ALI',tare:0.45,date:day(),due:day(15),iec:'ABCDE1234F',lut:'AD270524003827F',eway:'',gstin:'27ABCDE1234F1Z5',gst:5,disc:0,bank:'A/C NO: 123456789012\nIFSC: SBIN0000123\nSWIFT: SBININBBXXX\nUPI: anubhuti@oksbi',terms:'1. Goods once sold will not be taken back.\n2. Payment as per agreed terms.\n3. Subject to Yavatmal jurisdiction.',boxes:350,client:'Dubai - AL RAHMANI',items:[{hs:'07096010',d:'Green Chilli',t:'g',q:900,r:4.205,c:3.2},{hs:'07096010',d:'Red Chilli',t:'r',q:500,r:3.5,c:2.8}]});
+let D=load('ax_draft',null)||fresh(),view='home';
+const money=n=>(SYM[D.cur]||'')+n.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
+function calc(d=D){const sub=d.items.reduce((a,x)=>a+x.q*x.r,0),cost=d.items.reduce((a,x)=>a+x.q*x.c,0),dis=sub*d.disc/100,tax=(sub-dis)*d.gst/100,raw=sub-dis+tax,total=Math.round(raw),net=d.items.reduce((a,x)=>a+x.q,0);
+ const use={g:0,r:0,o:0};d.items.forEach(x=>use[x.t]+=x.q);
+ return{sub,dis,tax,ro:total-raw,total,profit:sub-cost,pct:cost?(sub-cost)/cost*100:0,net,gross:net+d.boxes*d.tare,use}}
+function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(toast.h);toast.h=setTimeout(()=>t.hidden=true,2400)}
+const fld=(k,l,t='text',x='')=>`<div><label for="f_${k}">${l}</label><input id="f_${k}" data-f="${k}" type="${t}" ${t=='number'?'step="any"':''} value="${esc(D[k])}" ${x}></div>`;
+const sel=(k,l,o)=>`<div><label for="f_${k}">${l}</label><select id="f_${k}" data-f="${k}">${o.map(v=>`<option ${D[k]==v?'selected':''}>${v}</option>`).join('')}</select></div>`;
+const ta=(k,l,w='w')=>`<div class="${w}"><label for="f_${k}">${l}</label><textarea id="f_${k}" data-f="${k}">${esc(D[k])}</textarea></div>`;
 
-    <div id="dashboardAnchor" class="edit-panel no-print">
-        <div class="edit-grid">
-            <div class="client-box">
-                <div style="display: grid; grid-template-columns: 1fr 1fr auto; gap: 10px; align-items: end;">
-                    <div><label>CLIENT DATABASE - SELECT KARO</label><select id="clientSelect" onchange="loadClient()"><option value="">-- Select Client / Naya Client --</option></select></div>
-                    <div><label>CLIENT NAME (Naya Save)</label><input id="newClientName" placeholder="Jaise: Dubai - AL RAHMANI"></div>
-                    <div><button class="btn btn-blue" style="width: 100%;" onclick="saveClient()">+ SAVE CLIENT</button></div>
-                </div>
-            </div>
-            <div><label>DOC TYPE</label><select id="docType"><option>INVOICE</option><option>QUOTATION</option><option>PACKING LIST</option><option>PROFORMA INVOICE</option></select></div>
-            <div><label>CURRENCY</label><select id="cur"><option value="INR">INR - ₹</option><option value="USD">USD - $</option><option value="AED">AED</option><option value="EUR">EUR - €</option></select></div>
-            <div><label>DOC NO <button onclick="genInv()" style="margin-left:6px;padding:2px 6px;border-radius:4px;border:none;background:#f9c00f;color:#000;font-size:9px;cursor:pointer">AUTO</button></label><input id="invNo" value="AKS-4524-25"></div>
-            <div><label>EXPORTER</label><textarea id="exp">ANUBHUTI KSUS EXIMPRENEUR
-YAVATMAL, MAHARASHTRA, INDIA</textarea></div>
-            <div><label>BUYER</label><textarea id="buyer">AL RAHMANI TRADING LLC, DUBAI, UAE</textarea></div>
-            <div><label>CONSIGNEE</label><textarea id="consignee">ARAB EMIRATES FRESH IMPORTS, JEBEL ALI, DUBAI</textarea></div>
-            <div><label>LOGO UPLOAD</label><input type="file" id="logoFile" accept="image/*"></div>
-            <div><label>SIGNATURE UPLOAD</label><input type="file" id="signFile" accept="image/*"></div>
-            <div><label>PAYMENT STATUS</label><select id="payStatus"><option>UNPAID</option><option>PAID</option><option>PARTIAL</option></select></div>
-            <div><label>POL</label><input id="pol" value="NHAVA SHEVA, INDIA"></div>
-            <div><label>ORIGIN</label><input id="origin" value="INDIA"></div>
-            <div><label>PAYMENT</label><input id="pay" value="30% Advance, 70% D.A"></div>
-            <div><label>POD</label><input id="pod" value="JEBEL ALI, DUBAI"></div>
-            <div><label>DEST</label><input id="dest" value="UAE"></div>
-            <div><label>INCOTERMS</label><input id="inco" value="CIF JEBEL ALI"></div>
-            <div><label>TARE WEIGHT (KG)</label><input id="tareWeight" type="number" value="0.45"></div>
-            <div><label>INVOICE DATE</label><input id="invDate" type="date" value="2024-12-05"></div>
-            <div><label>DUE DATE</label><input id="dueDate" type="date" value="2024-12-20"></div>
-            <div><label>IEC CODE</label><input id="iec" value="ABCDE1234F"></div>
-            <div><label>LUT NO</label><input id="lut" value="AD270524003827F"></div>
-            <div><label>E-WAY BILL NO</label><input id="eway" value=""></div>
-            <div><label>GSTIN</label><input id="gstin" value="27ABCDE1234F1Z5"></div>
-            <div><label>GST %</label><input id="gstPercent" type="number" value="5"></div>
-            <div><label>DISCOUNT %</label><input id="discount" type="number" value="0"></div>
-            <div style="grid-column: span 2;"><label>BANK DETAILS</label><textarea id="bankDetails">A/C NO: 123456789012
-IFSC: SBIN0000123
-SWIFT: SBININBBXXX
-UPI: anubhuti@oksbi</textarea></div>
-            <div><label>TERMS & CONDITIONS</label><textarea id="terms">1. Goods once sold will not be taken back.
-2. Payment as per agreed terms.
-3. Subject to Yavatmal jurisdiction.</textarea></div>
-            <div class="stock-box">
-                <div style="display: flex; justify-content: space-between;"><label style="color: #10b981;">STOCK MANAGER - OVER-SELLING CHECK (Day 2)</label><div style="font-size: 9px; color: #10b981;" id="stockStatus">Stock OK</div></div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px;">
-                    <div><label style="color: #10b981;">GREEN CHILLI STOCK (KG)</label><input id="stockGreen" type="number" value="5000" oninput="renderAll()"></div>
-                    <div><label style="color: #10b981;">RED CHILLI STOCK (KG)</label><input id="stockRed" type="number" value="3000" oninput="renderAll()"></div>
-                    <div><label style="color: #10b981;">OTHER STOCK (KG)</label><input id="stockOther" type="number" value="10000" oninput="renderAll()"></div>
-                </div>
-            </div>
-            <div class="container-box">
-                <div style="display: flex; justify-content: space-between;"><label style="color: #f9c00f;">CONTAINER CALCULATOR - TARE 0.45 (Day 2)</label><div style="font-size: 10px; color: #f9c00f;" id="containerStatus">Net: 0 KG | Gross: 0 KG</div></div>
-                <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-top: 8px;">
-                    <div><label style="color: #f9c00f;">BOXES COUNT</label><input id="boxCount" type="number" value="0" readonly></div>
-                    <div><label style="color: #f9c00f;">NET WEIGHT</label><input id="netWeight" type="number" value="0" readonly></div>
-                    <div><label style="color: #f9c00f;">GROSS = NET + (BOXES * 0.45)</label><input id="grossWeight" type="number" value="0" readonly></div>
-                </div>
-            </div>
-            <div class="prod-edit">
-                <div style="display: flex; justify-content: space-between;"><label>PRODUCTS + PROFIT</label><div style="font-size: 10px;">Total Profit: <b id="totalProfitHead" style="color: #10b981;">₹0.00</b></div></div>
-                <div class="prod-head"><div>HS CODE</div><div>DESCRIPTION</div><div>QTY</div><div>SELL RATE</div><div>COST RATE</div><div>PROFIT</div><div>DEL</div></div>
-                <div id="editList"></div>
-                <button class="btn btn-add" style="margin-top: 12px; width: 100%;" onclick="addP()">+ Add Product</button>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 14px;"><div><label><input type="checkbox" id="roundOff" checked> ROUND OFF</label></div><div class="total-below" style="margin: 0;"><div class="total-below-box"><span id="totLabel">TOTAL INR</span><span id="totAmt">₹ 0.00</span></div></div></div>
-            </div>
-        </div>
-    </div>
-    <div class="sheet"><div class="head"><div><h1>INVOICE</h1><div style="margin-top: 8px; font-size: 11px;"><div>Invoice No: <b id="invNoTxt">AKS-4524-25</b> <span id="statusBadge" style="background: #ef4444; color: #fff; padding: 2px 6px; border-radius: 4px; margin-left: 8px;">UNPAID</span></div><div>Date: <span id="invDateTxt"></span> | Due: <span id="dueDateTxt"></span></div><div>Currency: <span id="curTxt"></span> | GSTIN: <span id="gstinTxt"></span></div></div></div><div style="text-align: right;"><img id="logoPreview" style="max-width: 90px; display: none;"><div style="color: #f9c00f; font-size: 20px; font-weight: 900;">ANUBHUTI KSUS</div><div>EXIMPRENEUR</div><div style="font-size: 10px; margin-top: 6px;"><span id="qrBox"></span></div></div></div><div class="yellow">Bill To</div><div style="display: grid; grid-template-columns: 1fr 1fr;"><div style="padding: 10px 24px; border-right: 1px solid #e2e8f0;"><b>BUYER:</b><br><span id="buyerTxt"></span></div><div style="padding: 10px 24px;"><b>CONSIGNEE:</b><br><span id="consigneeTxt"></span></div></div><div class="yellow">Shipment</div><div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; font-size: 11px;"><div style="padding: 8px 24px; border-right: 1px solid #e2e8f0;"><b>POL:</b> <span id="polTxt"></span></div><div style="padding: 8px 24px; border-right: 1px solid #e2e8f0;"><b>POD:</b> <span id="podTxt"></span></div><div style="padding: 8px 24px; border-right: 1px solid #e2e8f0;"><b>Origin:</b> <span id="originTxt"></span></div><div style="padding: 8px 24px;"><b>Dest:</b> <span id="destTxt"></span></div></div><div class="yellow">Container (Net/Gross + Tare 0.45)</div><div style="display: grid; grid-template-columns: 1fr 1fr 1fr; font-size: 11px; background: #fffbeb;"><div style="padding: 8px 24px; border-right: 1px solid #e2e8f0;"><b>Boxes:</b> <span id="boxCountTxt">0</span></div><div style="padding: 8px 24px; border-right: 1px solid #e2e8f0;"><b>Net:</b> <span id="netWeightTxt">0 KG</span></div><div style="padding: 8px 24px;"><b>Gross:</b> <span id="grossWeightTxt">0 KG</span></div></div><table><thead><tr><th>HS</th><th>Description</th><th>Qty</th><th>Rate</th><th>Amount</th><th class="no-print">Profit</th></tr></thead><tbody id="tbody"></tbody></table><div class="total-wrap"><div class="total-box"><div class="r"><span>Sub Total</span><span id="sub">₹0.00</span></div><div class="r"><span>Discount</span><span id="discAmt">- ₹0.00</span></div><div class="r"><span>GST</span><span id="gstAmt">₹0.00</span></div><div class="line"></div><div class="r" style="font-weight: 900; font-size: 13px;"><span id="grandLabel">TOTAL INR</span><span id="grand">₹0.00</span></div><div class="r no-print" style="background: #ecfdf5; padding: 6px; border-radius: 6px; margin-top: 6px;"><span><b>TOTAL PROFIT</b></span><span id="totalProfit" style="color: #10b981; font-weight: 900;">₹0.00</span></div><div style="font-size: 10px; margin-top: 6px; font-style: italic;" id="inWords"></div></div></div><div class="yellow">Payment</div><div style="display: grid; grid-template-columns: 1.2fr 0.8fr; font-size: 11px;"><div style="padding: 12px 24px;"><b>Bank:</b><br><span id="bankTxt"></span><br><br><b>Terms:</b><br><span id="termsTxt"></span></div><div style="padding: 12px 24px; text-align: center;"><img id="signPreview" style="max-width: 120px; display: none;"><div style="border: 1px solid #000; width: 130px; margin-left: auto; padding: 4px;"><div style="height: 40px;"></div><div style="border-top: 1px solid #000; font-size: 8px;">Authorized Signatory</div></div></div></div><div class="footer"></div></div>
-    <div class="btns no-print" style="max-width: 1100px; margin: 14px auto; display: flex; gap: 10px; justify-content: center;"><button class="btn btn-print" onclick="window.print()">PRINT / PDF</button><button class="btn btn-wa" onclick="shareWA()">WhatsApp</button><button class="btn btn-blue" onclick="exportClients()">Export DB</button><button class="btn btn-add" onclick="saveLocal()">Save</button></div>
-    <script>
-        var curs = { INR: { s: '₹' }, USD: { s: '$' }, AED: { s: 'AED' }, EUR: { s: '€' } }; var cur = 'INR';
-        var prods = [{ hs: '07096010', goods: 'INDIAN FRESH GREEN CHILLIES - GRADE A - 4KG BOX', qty: 900, price: 4.205, cost: 3.2 }, { hs: '07096010', goods: 'INDIAN FRESH RED CHILLIES', qty: 500, price: 3.5, cost: 2.8 }];
-        var clients = JSON.parse(localStorage.getItem('aks_clients') || '[]'); if (clients.length === 0) { clients = [{ name: 'Dubai - AL RAHMANI', buyer: 'AL RAHMANI TRADING LLC, DUBAI, UAE', consignee: 'ARAB EMIRATES FRESH IMPORTS, JEBEL ALI, DUBAI', gstin: '27ABCDE1234F1Z5' }]; localStorage.setItem('aks_clients', JSON.stringify(clients)); }
-        function esc(t) { return t ? t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') : ''; }
-        function genInv() { var d = new Date(); var r = Math.floor(Math.random() * 900) + 100; document.getElementById('invNo').value = 'AKS-' + d.getFullYear() + '-' + r; renderAll(); }
-        function addP() { prods.push({ hs: '07096010', goods: 'NEW PRODUCT', qty: 100, price: 1, cost: 0.8 }); renderAll(); }
-        function remP(i) { if (prods.length == 1) return; prods.splice(i, 1); renderAll(); }
-        function updP(i, f, v) { if (f === 'qty' || f === 'price' || f === 'cost') prods[i][f] = parseFloat(v) || 0; else prods[i][f] = v; renderAll(); }
-        function refreshClientDropdown() { var sel = document.getElementById('clientSelect'); sel.innerHTML = '<option value="">-- Select Client / Naya Client --</option>'; clients.forEach(function(c, i) { var opt = document.createElement('option'); opt.value = i; opt.innerText = c.name; sel.appendChild(opt); }); }
-        function loadClient() { var idx = document.getElementById('clientSelect').value; if (idx === '') return; var c = clients[idx]; document.getElementById('buyer').value = c.buyer; document.getElementById('consignee').value = c.consignee; document.getElementById('gstin').value = c.gstin || ''; renderAll(); }
-        function saveClient() { var name = document.getElementById('newClientName').value.trim(); if (!name) { alert('Client Name daalo!'); return; } var newC = { name: name, buyer: document.getElementById('buyer').value, consignee: document.getElementById('consignee').value, gstin: document.getElementById('gstin').value }; clients.push(newC); localStorage.setItem('aks_clients', JSON.stringify(clients)); refreshClientDropdown(); document.getElementById('newClientName').value = ''; alert('Save Ho Gaya - ' + name); }
-        function exportClients() { var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(clients, null, 2)); var a = document.createElement('a'); a.href = dataStr; a.download = 'CLIENT_DB.json'; a.click(); }
-        function inWords(n) { if (n === 0) return 'Rupees Zero Only'; var a = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Eleven', 'Twelve', 'Thirteen', 'Fourteen', 'Fifteen', 'Sixteen', 'Seventeen', 'Eighteen', 'Nineteen']; var b = ['', '', 'Twenty', 'Thirty', 'Forty', 'Fifty', 'Sixty', 'Seventy', 'Eighty', 'Ninety']; function numToWords(num) { if (num < 20) return a[num]; if (num < 100) return b[Math.floor(num / 10)] + (num % 10 ? ' ' + a[num % 10] : ''); if (num < 1000) return a[Math.floor(num / 100)] + ' Hundred' + (num % 100 ? ' ' + numToWords(num % 100) : ''); if (num < 100000) return numToWords(Math.floor(num / 1000)) + ' Thousand' + (num % 1000 ? ' ' + numToWords(num % 1000) : ''); return numToWords(Math.floor(num / 100000)) + ' Lakh' + (num % 100000 ? ' ' + numToWords(num % 100000) : ''); } return 'Rupees ' + numToWords(Math.floor(n)) + ' Only'; }
-        function shareWA() { var g = document.getElementById('grand').innerText; var no = document.getElementById('invNo').value; window.open('https://wa.me/?text=INVOICE ' + encodeURIComponent(no) + ' Total:' + encodeURIComponent(g), '_blank'); }
-        function saveLocal() { localStorage.setItem('aks_final', JSON.stringify({ prods: prods })); alert('Saved!'); }
-        function renderAll() {
-            var c = curs[cur]; var gstP = parseFloat(document.getElementById('gstPercent').value) || 0; var discP = parseFloat(document.getElementById('discount').value) || 0; var round = document.getElementById('roundOff').checked; var tare = parseFloat(document.getElementById('tareWeight').value) || 0.45;
-            document.getElementById('invNoTxt').innerText = document.getElementById('invNo').value; document.getElementById('invDateTxt').innerText = document.getElementById('invDate').value; document.getElementById('dueDateTxt').innerText = document.getElementById('dueDate').value; document.getElementById('curTxt').innerText = cur + ' - ' + c.s; document.getElementById('gstinTxt').innerText = document.getElementById('gstin').value; document.getElementById('buyerTxt').innerHTML = esc(document.getElementById('buyer').value).replace(/\n/g, '<br>'); document.getElementById('consigneeTxt').innerHTML = esc(document.getElementById('consignee').value).replace(/\n/g, '<br>'); document.getElementById('polTxt').innerText = document.getElementById('pol').value; document.getElementById('podTxt').innerText = document.getElementById('pod').value; document.getElementById('originTxt').innerText = document.getElementById('origin').value; document.getElementById('destTxt').innerText = document.getElementById('dest').value; document.getElementById('bankTxt').innerText = document.getElementById('bankDetails').value; document.getElementById('termsTxt').innerText = document.getElementById('terms').value; document.getElementById('statusBadge').innerText = document.getElementById('payStatus').value;
-            var stockGreen = parseFloat(document.getElementById('stockGreen').value) || 0; var stockRed = parseFloat(document.getElementById('stockRed').value) || 0; var stockOther = parseFloat(document.getElementById('stockOther').value) || 0; var totalQty = 0; var greenQty = 0; var redQty = 0; var otherQty = 0; prods.forEach(function(p){ totalQty += p.qty; var g = p.goods.toLowerCase(); if(g.includes('green')) greenQty += p.qty; else if(g.includes('red')) redQty += p.qty; else otherQty += p.qty; }); var stockOk = greenQty <= stockGreen && redQty <= stockRed && otherQty <= stockOther; var stockMsg = document.getElementById('stockStatus'); if(stockOk) { stockMsg.innerText = 'Stock OK - G:'+greenQty+'/'+stockGreen+' R:'+redQty+'/'+stockRed; stockMsg.style.color='#10b981'; } else { stockMsg.innerText = '⚠️ OVER! G:'+greenQty+'/'+stockGreen+' R:'+redQty+'/'+stockRed; stockMsg.style.color='#ef4444'; }
-            var boxCount = totalQty / 4; var netWeight = totalQty; var grossWeight = netWeight + (boxCount * tare); document.getElementById('boxCount').value = Math.ceil(boxCount); document.getElementById('netWeight').value = netWeight; document.getElementById('grossWeight').value = grossWeight.toFixed(2); document.getElementById('containerStatus').innerText = 'Net: '+netWeight+' KG | Gross: '+grossWeight.toFixed(2)+' KG | Boxes: '+Math.ceil(boxCount); document.getElementById('boxCountTxt').innerText = Math.ceil(boxCount); document.getElementById('netWeightTxt').innerText = netWeight + ' KG'; document.getElementById('grossWeightTxt').innerText = grossWeight.toFixed(2) + ' KG (Tare '+tare+'*'+Math.ceil(boxCount)+')';
-            var h = ''; var totalProfitAmt = 0; var totalCost = 0; for (var i = 0; i < prods.length; i++) { var p = prods[i]; var profitPerUnit = p.price - p.cost; var profitTotal = profitPerUnit * p.qty; var profitPercent = p.cost > 0 ? (profitPerUnit / p.cost * 100) : 0; totalProfitAmt += profitTotal; totalCost += p.cost * p.qty; var badgeClass = profitPerUnit >= 0 ? 'profit-green' : 'profit-red'; h += '<div class="prod-row"><input value="' + esc(p.hs) + '" oninput="updP(' + i + ',\'hs\',this.value)"><input value="' + esc(p.goods) + '" oninput="updP(' + i + ',\'goods\',this.value)"><input type="number" value="' + p.qty + '" oninput="updP(' + i + ',\'qty\',this.value)"><input type="number" step="0.001" value="' + p.price + '" oninput="updP(' + i + ',\'price\',this.value)"><input type="number" step="0.001" value="' + p.cost + '" oninput="updP(' + i + ',\'cost\',this.value)"><div style="text-align: center;"><span class="profit-badge ' + badgeClass + '">' + c.s + profitTotal.toFixed(0) + '<br>' + profitPercent.toFixed(0) + '%</span></div><button class="btn btn-red" onclick="remP(' + i + ')">X</button></div>'; } document.getElementById('editList').innerHTML = h;
-            var rows = ''; var total = 0; for (var i = 0; i < prods.length; i++) { var p = prods[i]; var amt = p.qty * p.price; total += amt; var profitTotal = (p.price - p.cost) * p.qty; var profitPercent = p.cost > 0 ? ((p.price - p.cost) / p.cost * 100) : 0; rows += '<tr><td>' + esc(p.hs) + '</td><td>' + esc(p.goods) + '</td><td style="text-align: center;">' + p.qty + '</td><td style="text-align: right;">' + c.s + ' ' + p.price.toFixed(3) + '</td><td style="text-align: right;"><b>' + c.s + ' ' + amt.toFixed(2) + '</b></td><td class="no-print" style="text-align: center; font-size: 9px; color: ' + (profitTotal >= 0 ? '#10b981' : '#ef4444') + ';"><b>' + c.s + ' ' + profitTotal.toFixed(0) + ' (' + profitPercent.toFixed(0) + '%)</b></td></tr>'; } document.getElementById('tbody').innerHTML = rows;
-            var discAmt = total * discP / 100; var afterDisc = total - discAmt; var gstAmt = afterDisc * gstP / 100; var grand = afterDisc + gstAmt; if (round) grand = Math.round(grand); var totalProfitPercent = totalCost > 0 ? (totalProfitAmt / totalCost * 100) : 0; document.getElementById('sub').innerText = c.s + ' ' + total.toFixed(2); document.getElementById('discAmt').innerText = '- ' + c.s + ' ' + discAmt.toFixed(2); document.getElementById('gstAmt').innerText = c.s + ' ' + gstAmt.toFixed(2); document.getElementById('grand').innerText = c.s + ' ' + grand.toFixed(2); document.getElementById('totAmt').innerText = c.s + ' ' + grand.toFixed(2); document.getElementById('totalProfit').innerText = c.s + ' ' + totalProfitAmt.toFixed(2) + ' (' + totalProfitPercent.toFixed(1) + '%)'; document.getElementById('totalProfitHead').innerText = c.s + ' ' + totalProfitAmt.toFixed(0) + ' (' + totalProfitPercent.toFixed(0) + '%)'; document.getElementById('inWords').innerText = inWords(grand); var upi = document.getElementById('bankDetails').value.match(/UPI:\s*(\S+)/); if (upi) { document.getElementById('qrBox').innerHTML = '<br><img src="https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=' + encodeURIComponent(upi[1]) + '" style="margin-top:4px;">'; }
-        }
-        document.getElementById('logoFile').addEventListener('change', function(e) { var r = new FileReader(); r.onload = function() { document.getElementById('logoPreview').src = r.result; document.getElementById('logoPreview').style.display = 'block'; }; r.readAsDataURL(e.target.files[0]); });
-        document.getElementById('signFile').addEventListener('change', function(e) { var r = new FileReader(); r.onload = function() { document.getElementById('signPreview').src = r.result; document.getElementById('signPreview').style.display = 'block'; }; r.readAsDataURL(e.target.files[0]); });
-        document.getElementById('cur').addEventListener('change', function() { cur = this.value; renderAll(); });
-        var ids = ['exp','buyer','consignee','invNo','invDate','dueDate','pol','pod','origin','dest','pay','inco','tareWeight','bankDetails','gstin','gstPercent','docType','iec','lut','eway','discount','roundOff','payStatus','terms'];
-        ids.forEach(function(id) { var el = document.getElementById(id); if (el) el.addEventListener('input', renderAll); });
-        refreshClientDropdown(); renderAll();
-    </script>
+function summary(){const c=calc();const st=['g','r','o'].map(k=>({k,n:{g:'Green chilli',r:'Red chilli',o:'Other'}[k],u:c.use[k],s:stock[k]}));const over=st.filter(x=>x.u>x.s);
+ return`<div class="big"><small>Total ${D.cur}</small><b>${money(c.total)}</b><div><span>Subtotal</span><span>${money(c.sub)}</span></div><div><span>Discount</span><span>- ${money(c.dis)}</span></div><div><span>GST ${D.gst}%</span><span>${money(c.tax)}</span></div><div><span>Round off</span><span>${money(c.ro)}</span></div></div>
+ <div class="cd"><h3>Profit</h3><div class="ln"><span>Total profit</span><b class="${c.profit>=0?'ok':'bad'}">${money(c.profit)} (${c.pct.toFixed(0)}%)</b></div></div>
+ <div class="cd"><h3>Stock check</h3>${over.length?`<p class="bad" role="alert"><b>Over-selling:</b> ${over.map(x=>`${x.n} needs ${x.u} kg, stock is ${x.s} kg`).join('; ')}. Reduce quantity or update stock.</p>`:'<p class="ok"><b>Stock OK.</b></p>'}${st.map(x=>`<div class="ln"><span>${x.n}</span><span>${x.u} / ${x.s} kg</span></div>`).join('')}
+ <div class="g" style="margin-top:.6rem">${[['g','Green stock (kg)'],['r','Red stock (kg)'],['o','Other stock (kg)']].map(([k,l])=>`<div><label for="s_${k}">${l}</label><input id="s_${k}" data-s="${k}" type="number" value="${stock[k]}"></div>`).join('')}</div></div>
+ <div class="cd"><h3>Container calculator</h3><div class="ln"><span>Net weight</span><b>${c.net} kg</b></div><div class="ln"><span>Gross (net + boxes × tare)</span><b>${c.gross.toFixed(2)} kg</b></div><div style="margin-top:.5rem"><label for="f_boxes">Boxes</label><input id="f_boxes" data-f="boxes" type="number" value="${D.boxes}"></div></div>
+ <button class="btn gd" id="prev" style="width:100%;margin-bottom:8px">Preview and print</button><button class="btn" id="save" style="width:100%">Save document</button>`}
+
+function home(){const c=calc();
+ return`<div class="lay"><div>
+ <div class="cd"><h3>Client</h3><div class="sel"><div><label for="cs">Client database</label><select id="cs"><option value="">Select client or add new</option>${clients.map((x,i)=>`<option value="${i}" ${D.client==x.name?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div><div><label for="cn">New client name</label><input id="cn" placeholder="Jaise: Dubai - AL RAHMANI"></div><button class="btn ghost" id="sc">Save client</button></div></div>
+ <div class="cd"><h3>Document</h3><div class="g">${sel('type','Doc type',['INVOICE','PROFORMA INVOICE','PACKING LIST','QUOTATION'])}${sel('cur','Currency',['INR','USD','AED','EUR'])}${fld('no','Doc no (auto)')}${sel('status','Payment status',['Unpaid','Partly paid','Paid'])}${fld('date','Invoice date','date')}${fld('due','Due date','date')}</div></div>
+ <div class="cd"><h3>Parties</h3><div class="g">${ta('exporter','Exporter')}${ta('buyer','Buyer')}${ta('consignee','Consignee')}</div>
+ <div class="g" style="margin-top:10px"><div><label for="lg">Logo upload</label><input id="lg" type="file" accept="image/*" data-up="logo"></div><div><label for="sg">Signature upload</label><input id="sg" type="file" accept="image/*" data-up="sig"></div></div></div>
+ <div class="cd"><h3>Shipment and compliance</h3><div class="g">${fld('pol','POL')}${fld('pod','POD')}${fld('origin','Origin')}${fld('dest','Destination')}${fld('inc','Incoterms')}${fld('pay','Payment terms')}${fld('tare','Tare weight (kg)','number')}${fld('iec','IEC code')}${fld('lut','LUT no')}${fld('eway','E-way bill no')}${fld('gstin','GSTIN')}${fld('gst','GST %','number')}${fld('disc','Discount %','number')}</div></div>
+ <div class="cd"><h3>Products and profit</h3><div class="tw"><div class="pr h"><span>HS code</span><span>Description</span><span>Type</span><span>Qty (kg)</span><span>Sell rate</span><span>Cost rate</span><span>Profit</span><span></span></div>
+ ${D.items.map((x,i)=>`<div class="pr"><input data-i="${i}" data-k="hs" value="${esc(x.hs)}" aria-label="HS code"><input data-i="${i}" data-k="d" value="${esc(x.d)}" aria-label="Description"><select data-i="${i}" data-k="t" aria-label="Stock type"><option value="g" ${x.t=='g'?'selected':''}>Green</option><option value="r" ${x.t=='r'?'selected':''}>Red</option><option value="o" ${x.t=='o'?'selected':''}>Other</option></select><input data-i="${i}" data-k="q" type="number" step="any" value="${x.q}" aria-label="Quantity"><input data-i="${i}" data-k="r" type="number" step="any" value="${x.r}" aria-label="Sell rate"><input data-i="${i}" data-k="c" type="number" step="any" value="${x.c}" aria-label="Cost rate"><output id="pf${i}"></output><button class="btn ghost sm" data-del="${i}" aria-label="Remove product">✕</button></div>`).join('')}</div>
+ <button class="btn ghost sm" id="ap">Add product</button></div>
+ <div class="cd"><h3>Bank details and terms</h3><div class="g">${ta('bank','Bank details')}${ta('terms','Terms and conditions')}</div></div>
+ </div><div class="sk" id="sm">${summary()}</div></div>`}
+
+function dash(){const paid=invs.filter(v=>v.status=='Paid'),tot=invs.reduce((a,v)=>a+v.total,0),pf=invs.reduce((a,v)=>a+v.profit,0),due=invs.filter(v=>v.status!='Paid').reduce((a,v)=>a+v.total,0);
+ const mi=[3,2,1,0].map(k=>(new Date().getMonth()-k+12)%12+1),ms=mi.map(m=>MON[m-1]),by=mi.map(m=>invs.filter(v=>+v.date.slice(5,7)==m).reduce((a,v)=>a+v.total,0)),mx=Math.max(...by,1);
+ const chart=`<svg viewBox="0 0 420 200" width="100%" role="img" aria-label="Invoiced amount by month">${by.map((v,i)=>{const h=v/mx*150,x=30+i*95;return`<rect x="${x}" y="${170-h}" width="60" height="${h}" rx="6" fill="var(--br)"><title>${ms[i]}: ${Math.round(v).toLocaleString('en-IN')}</title></rect><text x="${x+30}" y="192" text-anchor="middle" font-size="12" fill="var(--mu)">${ms[i]}</text><text x="${x+30}" y="${164-h}" text-anchor="middle" font-size="11" fill="var(--ink)">${v>=1e5?(v/1e5).toFixed(1)+'L':v?Math.round(v/1e3)+'k':''}</text>`}).join('')}</svg>`;
+ return`<h2 style="font-size:30px;margin-bottom:1rem">Dashboard</h2><div class="kp"><div><small>Total invoiced</small><b>₹${Math.round(tot).toLocaleString('en-IN')}</b></div><div><small>Total profit</small><b>₹${Math.round(pf).toLocaleString('en-IN')}</b></div><div><small>Unpaid</small><b class="warn">₹${Math.round(due).toLocaleString('en-IN')}</b></div><div><small>Documents</small><b>${invs.length}</b></div></div>
+ <div class="lay" style="grid-template-columns:1fr 1fr"><div class="cd"><h3>Monthly invoicing</h3>${chart}</div><div class="cd"><h3>Clients</h3>${clients.map(c=>{const t=invs.filter(v=>v.client==c.name);return`<div class="ln"><span><b>${esc(c.name)}</b><br><small style="color:var(--mu)">${t.length} documents</small></span><b>₹${Math.round(t.reduce((a,v)=>a+v.total,0)).toLocaleString('en-IN')}</b></div>`}).join('')}</div></div>
+ <div class="cd"><h3>Recent documents <button class="btn ghost sm" data-v="hist">View all</button></h3><div class="tw"><table><thead><tr><th>Doc no</th><th>Client</th><th>Date</th><th class="n">Total</th><th class="n">Profit</th><th>Status</th><th></th></tr></thead><tbody>${[...invs].sort(byNew).slice(0,6).map((v,i)=>`<tr><td><b>${esc(v.no)}</b></td><td>${esc(v.client||'-')}</td><td>${v.date.split('-').reverse().join('/')}</td><td class="n">${(SYM[v.cur]||'')}${Math.round(v.total).toLocaleString('en-IN')}</td><td class="n">${Math.round(v.profit).toLocaleString('en-IN')}</td><td><span class="chip ${v.status=='Paid'?'ok':'warn'}">${v.status}</span></td><td class="n">${v.status!='Paid'?`<button class="btn sm" data-paid="${esc(v.no)}">Mark paid</button>`:''}</td></tr>`).join('')}</tbody></table></div></div>`}
+
+function modal(){const c=calc(),m=document.createElement('div');m.className='md';m.dataset.no=D.no;m.setAttribute('role','dialog');m.setAttribute('aria-modal','true');
+ m.innerHTML=`<div class="inv"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div>${brand.logo?`<img src="${brand.logo}" alt="Logo" style="max-height:56px">`:`<b style="font:800 20px 'Bricolage Grotesque'">ANUBHUTI KSUS EXIMPRENEUR</b>`}</div><div style="text-align:right"><h2 style="font-size:24px">${esc(D.type)}</h2>No: <b>${esc(D.no)}</b><br>Date: ${D.date.split('-').reverse().join('/')} · Due: ${D.due.split('-').reverse().join('/')}</div></div>
+ <div class="two"><div><b>Exporter</b><pre>${esc(D.exporter)}\nIEC: ${esc(D.iec)}  GSTIN: ${esc(D.gstin)}\nLUT: ${esc(D.lut)}</pre></div><div><b>Buyer</b><pre>${esc(D.buyer)}</pre><b>Consignee</b><pre>${esc(D.consignee)}</pre></div></div>
+ <table style="width:100%;border-collapse:collapse;margin-bottom:10px"><tr><td>POL: ${esc(D.pol)}</td><td>POD: ${esc(D.pod)}</td><td>Origin: ${esc(D.origin)}</td><td>Destination: ${esc(D.dest)}</td></tr><tr><td colspan="2">Incoterms: ${esc(D.inc)}</td><td colspan="2">Payment: ${esc(D.pay)}</td></tr></table>
+ <table style="width:100%;border-collapse:collapse"><thead><tr><th>HS code</th><th>Description</th><th class="n">Qty (kg)</th><th class="n">Rate</th><th class="n">Amount</th></tr></thead><tbody>${D.items.map(x=>`<tr><td>${esc(x.hs)}</td><td>${esc(x.d)}</td><td class="n">${x.q}</td><td class="n">${x.r}</td><td class="n">${money(x.q*x.r)}</td></tr>`).join('')}</tbody></table>
+ <div style="margin:10px 0 0 auto;width:min(280px,100%)"><div class="ln"><span>Subtotal</span><span>${money(c.sub)}</span></div><div class="ln"><span>Discount</span><span>- ${money(c.dis)}</span></div><div class="ln"><span>GST ${D.gst}%</span><span>${money(c.tax)}</span></div><div class="ln"><span>Round off</span><span>${money(c.ro)}</span></div><div class="ln" style="font:700 18px 'Bricolage Grotesque';border-top:2px solid #14282B"><span>Total</span><span>${money(c.total)}</span></div></div>
+ <p>Net weight ${c.net} kg · Gross weight ${c.gross.toFixed(2)} kg · ${D.boxes} boxes</p><div class="two"><div><b>Bank details</b><pre>${esc(D.bank)}</pre></div><div><b>Terms</b><pre>${esc(D.terms)}</pre></div></div>
+ <div style="text-align:right">${brand.sig?`<img src="${brand.sig}" alt="Signature" style="max-height:60px"><br>`:'<br><br>'}Authorised signatory</div>
+ <div class="noprint" style="display:flex;gap:8px;margin-top:14px"><button class="btn" id="pt">Print or save PDF</button><button class="btn ghost" id="cx">Close</button></div></div>`;
+ document.body.appendChild(m);m.querySelector('#cx').focus();m.querySelector('#cx').onclick=()=>m.remove();m.querySelector('#pt').onclick=()=>doPrint(m);m.onclick=e=>{if(e.target==m)m.remove()};m.onkeydown=e=>{if(e.key=='Escape')m.remove()}}
+
+function upd(){const s=$('#sm');if(s&&!s.contains(document.activeElement))s.innerHTML=summary();else if(s){const a=document.activeElement.id,v=document.activeElement.value;s.innerHTML=summary();const e=$('#'+a);if(e){e.focus();e.setSelectionRange?.(v.length,v.length)}}
+ D.items.forEach((x,i)=>{const o=$('#pf'+i);if(o){const p=x.q*(x.r-x.c);o.textContent=money(p)+' '+(x.c?Math.round(p/(x.q*x.c)*100):0)+'%'}});store('ax_draft',D)}
+function render(){const hd=$('#hd');
+ if(!ready){hd.hidden=true;return $('#app').innerHTML='<p style="text-align:center;padding:4rem 0;color:var(--mu)">Loading...</p>'}
+ if(!ok){hd.hidden=true;return $('#app').innerHTML=loginView()}
+ hd.hidden=false;chip();document.querySelectorAll('.tab').forEach(t=>t.dataset.v==view?t.setAttribute('aria-current','page'):t.removeAttribute('aria-current'));
+ $('#app').innerHTML={home,dash,hist,ana}[view]();if(view=='home')upd()}
+
+document.addEventListener('input',e=>{const t=e.target;
+ if(t.dataset.f){const k=t.dataset.f;D[k]=t.type=='number'?+t.value||0:t.value;upd()}
+ else if(t.dataset.i){const x=D.items[t.dataset.i],k=t.dataset.k;x[k]=['q','r','c'].includes(k)?+t.value||0:t.value;upd()}
+ else if(t.dataset.s){stock[t.dataset.s]=+t.value||0;store('ax_stock',stock);upd()}});
+document.addEventListener('change',e=>{const t=e.target;
+ if(t.id=='cs'&&t.value!==''){const c=clients[t.value];D.client=c.name;D.buyer=c.buyer;D.consignee=c.consignee;render()}
+ if(t.dataset.up&&t.files[0]){if(t.files[0].size>150000)return toast('Image should be under 150 KB');const r=new FileReader();r.onload=()=>{brand[t.dataset.up]=r.result;if(!store('ax_brand',brand))toast('Image is too large to keep saved. Use a smaller file.');else toast('Uploaded')};r.readAsDataURL(t.files[0])}});
+document.addEventListener('click',e=>{const t=e.target;
+ if(t.dataset.v=='out'){ok=false;try{sessionStorage.removeItem('ax_ok')}catch(e){}return render()}
+ if(t.dataset.v){view=t.dataset.v;return render()}
+ if(t.id=='sc'){const n=$('#cn').value.trim();if(!n)return toast('Enter a client name first');saveClient({name:n,buyer:D.buyer,consignee:D.consignee});D.client=n;toast('Client saved');return render()}
+ if(t.id=='ap'){D.items.push({hs:'07096010',d:'',t:'o',q:0,r:0,c:0});return render()}
+ if(t.dataset.del!==undefined){if(D.items.length>1){D.items.splice(+t.dataset.del,1);render()}return}
+ if(t.id=='prev')return modal();
+ if(t.id=='save'){const c=calc();if(!D.buyer.trim())return toast('Add a buyer before saving');if(!D.editing&&invs.some(v=>v.no==D.no)){let n=4524+invs.length;while(invs.some(v=>v.no=='AKS-'+n+'-25'))n++;D.no='AKS-'+n+'-25'}D.client=D.client||D.buyer.split(',')[0];saveInv({...structuredClone(D),editing:false,total:c.total,profit:c.profit});D=fresh();store('ax_draft',D);toast('Document saved');return render()}
+ if(t.dataset.paid!==undefined){markPaid(t.dataset.paid)}});
+const MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],T={},H={q:'',s:'All'};
+const slug=s=>String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'')||'x';
+const byNew=(a,b)=>(b.date||'').localeCompare(a.date||'')||(b.no||'').localeCompare(a.no||'');
+const fm=n=>Math.round(n||0).toLocaleString('en-IN');
+const sm=(l,k)=>l.reduce((a,v)=>a+(+v[k]||0),0);
+function dbSet(col,id,obj,wait=0){if(!DB)return;clearTimeout(T[col+id]);T[col+id]=setTimeout(()=>DB.collection(col).doc(id).set(obj).catch(()=>toast('Could not save. Check your connection and try again.')),wait)}
+function saveInv(v){const i=invs.findIndex(x=>x.no==v.no);i>-1?invs[i]=v:invs.push(v);store('ax_inv',invs);dbSet('invoices',slug(v.no),v)}
+function delInv(no){invs=invs.filter(x=>x.no!=no);store('ax_inv',invs);if(DB)DB.collection('invoices').doc(slug(no)).delete().catch(()=>toast('Could not delete. Check your connection.'))}
+function markPaid(no){const v=invs.find(x=>x.no==no);if(!v)return;v.status='Paid';saveInv(v);toast('Marked as paid');render()}
+function saveClient(c){const i=clients.findIndex(x=>x.name==c.name);i>-1?clients[i]=c:clients.push(c);store('ax_cl',clients);dbSet('clients',slug(c.name),c)}
+function chip(){const c=$('#dbs');if(c)c.textContent={cloud:'Database connected',local:'Saved on this device only',offline:'Database unreachable'}[cloud]}
+function refresh(){if(!ready)return;if(!ok){const f=$('#lf');if(!f||f.dataset.m!=lmode())render();return}chip();if(view=='home')upd();else if(view=='hist')histTbl();else render()}
+async function initDB(){
+ let ns=null;try{ns=await window.claude?.use?.('db')}catch(e){}
+ if(!ns){cloud='local';ready=true;return render()}
+ DB=ns;cloud='cloud';
+ const got={},off=()=>{cloud='offline';ready=true;render();toast('Connection problem. Changes may not be saved.')},tm=setTimeout(off,10000),cp=d=>structuredClone(d.data());
+ DB.collection('invoices').onSnapshot(s=>{invs=s.docs.map(cp);store('ax_inv',invs);refresh()},off);
+ DB.collection('clients').onSnapshot(s=>{clients=s.docs.map(cp);store('ax_cl',clients);refresh()},off);
+ DB.collection('users').onSnapshot(s=>{users=s.docs.map(cp);store('ax_users',users);got.u=1;ready=!!got.s;if(ready)clearTimeout(tm);refresh()},off);
+ DB.collection('settings').onSnapshot(s=>{const m={};s.docs.forEach(d=>m[d.id]=cp(d));if(m.stock)stock=m.stock;if(m.brand)brand=m.brand;auth=m.auth||null;got.s=1;ready=!!got.u;if(ready)clearTimeout(tm);refresh()},off)}
+
+async function hash(pw,salt){const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(salt+pw));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+const PCSS='body{margin:0;font:13px/1.5 Figtree,Arial,sans-serif;color:#14282B}.inv{padding:24px;max-width:780px;margin:auto}h2{margin:0;font-size:24px}table{width:100%;border-collapse:collapse}th,td{border:1px solid #CFD8D4;padding:.4rem .5rem;text-align:left}.n{text-align:right}.two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}pre{font:inherit;white-space:pre-wrap;margin:.2rem 0}.ln{display:flex;justify-content:space-between;padding:.25rem 0}';
+function doPrint(m){let fired=false;const f=()=>{fired=true};window.addEventListener('beforeprint',f);try{window.print()}catch(x){}
+ setTimeout(async()=>{window.removeEventListener('beforeprint',f);if(fired)return;
+  const el=m.querySelector('.inv').cloneNode(true);el.querySelectorAll('.noprint').forEach(x=>x.remove());
+  const html='<!doctype html><html><head><meta charset=utf-8><title>Invoice '+esc(m.dataset.no)+'</title><style>'+PCSS+'</style></head><body>'+el.outerHTML+'<script>onload=function(){setTimeout(function(){print()},400)}<'+'/script></body></html>';
+  const d=await window.claude?.use?.('downloads');
+  if(!d)return toast('Printing is blocked in this view. Open the page in a full browser tab to print.');
+  try{await d.save({filename:'Invoice-'+m.dataset.no+'.html',data:html});toast('File saved. Open it and the print dialog will appear.')}catch(x){}},350)}
+const accts=()=>[...(auth?[auth]:[]),...users];
+const lmode=()=>mode||(accts().length?'in':'up');
+function loginView(){const up=lmode()=='up';return`<div class="lgn"><section class="lgl"><div class="logo"><i></i><span>Anubhuti KSUS Eximpreneur</span></div><div><h1>Export billing, under control.</h1><ul><li>Invoices with IEC, LUT and GST</li><li>Stock and over-selling check</li><li>Profit and analytics per client</li></ul></div><small>Yavatmal, Maharashtra, India</small></section>
+<section class="lgr"><form id="lf" data-m="${lmode()}" novalidate><div class="seg" role="group" aria-label="Sign in or sign up"><button type="button" data-lm="in" aria-pressed="${!up}">Sign in</button><button type="button" data-lm="up" aria-pressed="${up}">Sign up</button></div>
+<h2 style="font-size:28px">${up?'Create your account':'Welcome back'}</h2><p style="color:var(--mu);margin:.2rem 0 1.2rem">${up?'Choose a username and password to get started.':'Sign in to continue.'}</p>
+<div style="margin-bottom:12px"><label for="lu">Username</label><input id="lu" autocomplete="username"></div><div style="margin-bottom:12px"><label for="lp">Password</label><input id="lp" type="password" autocomplete="${up?'new-password':'current-password'}"></div>
+${up?'<div style="margin-bottom:12px"><label for="lp2">Confirm password</label><input id="lp2" type="password" autocomplete="new-password"></div>':''}
+<p class="bad" id="le" role="alert" style="min-height:1.4em;font-size:13px"></p><button class="btn" style="width:100%">${up?'Create account':'Sign in'}</button></form></section></div>`}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-lm]');if(b){mode=b.dataset.lm;render()}});
+document.addEventListener('submit',async e=>{if(e.target.id!='lf')return;e.preventDefault();const u=$('#lu').value.trim(),p=$('#lp').value,er=$('#le'),up=lmode()=='up';
+ if(u.length<3||p.length<6)return er.textContent='Username needs 3+ characters and password 6+ characters.';
+ if(up){
+  if(p!=$('#lp2').value)return er.textContent='Passwords do not match.';
+  if(accts().some(a=>a.u.toLowerCase()==u.toLowerCase()))return er.textContent='This username is already taken.';
+  const salt=crypto.randomUUID(),a={u,salt,h:await hash(p,salt)};
+  try{if(DB){const r=DB.collection('users').doc(slug(u));if((await r.get()).exists)return er.textContent='This username is already taken.';await r.set(a)}else{users.push(a);store('ax_users',users)}}
+  catch(x){return er.textContent='Could not create the account. You need edit access to this page.'}
+ }else{const a=accts().find(x=>x.u.toLowerCase()==u.toLowerCase());if(!a||await hash(p,a.salt)!=a.h)return er.textContent='Wrong username or password.'}
+ ok=true;try{sessionStorage.setItem('ax_ok','1')}catch(x){}view='home';mode=null;render()});
+
+function histTbl(){const el=$('#ht');if(!el)return;const q=H.q.toLowerCase(),l=[...invs].sort(byNew).filter(v=>(H.s=='All'||v.status==H.s)&&((v.no||'')+' '+(v.client||'')+' '+(v.buyer||'')).toLowerCase().includes(q));
+ el.innerHTML=l.length?`<div class="tw"><table><thead><tr><th>Doc no</th><th>Client</th><th>Date</th><th class="n">Total</th><th class="n">Profit</th><th>Status</th><th></th></tr></thead><tbody>${l.map(v=>`<tr><td><b>${esc(v.no)}</b></td><td>${esc(v.client||'-')}</td><td>${(v.date||'').split('-').reverse().join('/')}</td><td class="n">${SYM[v.cur]||''}${fm(v.total)}</td><td class="n">${fm(v.profit)}</td><td><span class="chip ${v.status=='Paid'?'ok':'warn'}">${v.status}</span></td><td class="n" style="white-space:nowrap"><button class="btn ghost sm" data-open="${esc(v.no)}">Open</button> <button class="btn ghost sm" data-edit="${esc(v.no)}">Edit</button> ${v.status!='Paid'?`<button class="btn sm" data-paid="${esc(v.no)}">Mark paid</button> `:''}<button class="btn ghost sm" data-rm="${esc(v.no)}">Delete</button></td></tr>`).join('')}</tbody></table></div>`:'<p style="color:var(--mu)">'+(invs.length?'No documents match your search.':'No documents saved yet. Create one on Home and press Save document.')+'</p>'}
+function hist(){setTimeout(histTbl);return`<h2 style="font-size:30px;margin-bottom:1rem">History</h2><div class="cd"><div class="sel"><div><label for="hq">Search</label><input id="hq" type="search" value="${esc(H.q)}" placeholder="Client or doc number"></div><div><label for="hs">Status</label><select id="hs">${['All','Unpaid','Partly paid','Paid'].map(o=>`<option ${H.s==o?'selected':''}>${o}</option>`).join('')}</select></div><button class="btn ghost" id="csv">Export CSV</button></div></div><div class="cd" id="ht"></div>`}
+document.addEventListener('input',e=>{if(e.target.id=='hq'){H.q=e.target.value;histTbl()}});
+document.addEventListener('change',e=>{if(e.target.id=='hs'){H.s=e.target.value;histTbl()}});
+document.addEventListener('click',async e=>{const t=e.target;
+ if(t.dataset.open){const k=D;D=invs.find(v=>v.no==t.dataset.open);try{modal()}finally{D=k}}
+ else if(t.dataset.edit){D=structuredClone(invs.find(v=>v.no==t.dataset.edit));D.editing=true;view='home';render();toast('Editing '+D.no)}
+ else if(t.dataset.rm){if(t.dataset.arm){delInv(t.dataset.rm);toast('Deleted');histTbl()}else{t.dataset.arm='1';t.textContent='Sure?';setTimeout(()=>{t.dataset.arm='';t.textContent='Delete'},3000)}}
+ else if(t.id=='csv'){const d=await window.claude?.use?.('downloads');if(!d)return toast('Download is not available here');
+  const rows=[['Doc no','Client','Date','Currency','Total','Profit','Status'],...[...invs].sort(byNew).map(v=>[v.no,v.client,v.date,v.cur,v.total,Math.round(v.profit),v.status])];
+  try{await d.save({filename:'anubhuti-invoices.csv',data:rows.map(r=>r.map(c=>'"'+String(c??'').replace(/"/g,'""')+'"').join(',')).join('\n')})}catch(x){}}});
+
+function ana(){const h='<h2 style="font-size:30px;margin-bottom:1rem">Analytics</h2>';
+ if(!invs.length)return h+'<div class="cd"><p style="color:var(--mu)">Analytics appear after you save your first document on Home.</p></div>';
+ const n=new Date(),mon=[...Array(6)].map((_,i)=>{const d=new Date(n.getFullYear(),n.getMonth()-5+i,1),k=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0'),l=invs.filter(v=>(v.date||'').startsWith(k));return{l:MON[d.getMonth()],b:sm(l,'total'),p:sm(l,'profit')}});
+ const tot=sm(invs,'total'),pf=sm(invs,'profit'),paid=sm(invs.filter(v=>v.status=='Paid'),'total'),kg={g:0,r:0,o:0},bc={};
+ invs.forEach(v=>{(v.items||[]).forEach(x=>kg[x.t]=(kg[x.t]||0)+x.q);const c=v.client||'Unknown';bc[c]=(bc[c]||0)+v.total});
+ const cl=Object.entries(bc).sort((a,b)=>b[1]-a[1]).slice(0,5),mx=Math.max(...mon.map(m=>m.b),1),kx=Math.max(kg.g,kg.r,kg.o,1),cx=Math.max(...cl.map(c=>c[1]),1),pc=tot?paid/tot*100:0;
+ const svg=`<svg viewBox="0 0 460 200" width="100%" role="img" aria-label="Billed and profit by month">${mon.map((m,i)=>{const x=24+i*74,a=m.b/mx*150,b=Math.max(m.p,0)/mx*150;return`<rect x="${x}" y="${170-a}" width="26" height="${a}" rx="5" fill="var(--br)"><title>${m.l} billed ${fm(m.b)}</title></rect><rect x="${x+30}" y="${170-b}" width="26" height="${b}" rx="5" fill="var(--gd)"><title>${m.l} profit ${fm(m.p)}</title></rect><text x="${x+28}" y="192" text-anchor="middle" font-size="12" fill="var(--mu)">${m.l}</text>`}).join('')}</svg>`;
+ return h+`<div class="kp"><div><small>Total billed</small><b>₹${fm(tot)}</b></div><div><small>Total profit</small><b>₹${fm(pf)}</b></div><div><small>Collected</small><b>${pc.toFixed(0)}%</b></div><div><small>Weight exported</small><b>${fm(kg.g+kg.r+kg.o)} kg</b></div></div>
+ <div class="lay" style="grid-template-columns:1.3fr 1fr"><div class="cd"><h3>Last 6 months</h3>${svg}<div style="font-size:12.5px;color:var(--mu)"><span style="color:var(--br)">■</span> Billed &nbsp; <span style="color:var(--gd)">■</span> Profit</div></div>
+ <div class="cd"><h3>Collection</h3><div style="display:flex;height:12px;border-radius:99px;overflow:hidden;background:var(--ln)"><span style="width:${pc}%;background:var(--ok)"></span></div><div class="ln" style="margin-top:.5rem"><span class="ok">Paid ₹${fm(paid)}</span><span class="warn">Unpaid ₹${fm(tot-paid)}</span></div>
+ <h3 style="margin-top:1.2rem">Product mix</h3>${[['Green chilli','g'],['Red chilli','r'],['Other','o']].map(([a,k])=>`<div class="hb"><span>${a}</span><i style="width:${kg[k]/kx*100}%"></i><b>${fm(kg[k])} kg</b></div>`).join('')}</div></div>
+ <div class="cd"><h3>Top clients</h3>${cl.map(c=>`<div class="hb"><span title="${esc(c[0])}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(c[0])}</span><i style="width:${c[1]/cx*100}%"></i><b>₹${fm(c[1])}</b></div>`).join('')}<p style="font-size:12.5px;color:var(--mu);margin:.8rem 0 0">Amounts are added as entered, without currency conversion.</p></div>`}
+
+render();initDB();
+</script>
 </body>
 </html>
